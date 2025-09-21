@@ -1,34 +1,30 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-// import DataFeed from './DataFeed' // <--- REMOVE THIS, data will come from props
+import DataFeed from './DataFeed'
 
-const TipsCard = ({ tip }) => { // <--- Accept 'tip' as a prop
+const TipsCard = () => {
+
    
-  // Optional: Add a check if tip is null or undefined for safety
-  if (!tip) {
-    return null; // Or return a placeholder if preferred
-  }
-
   return (
     <View style={styles.container}>
         <View style = {styles.leagueContainer}>
-        <Text style= {{fontWeight: "bold", fontSize: 18,}}>{tip.league}</Text> {/* Use tip.league */}
+        <Text style= {{fontWeight: "bold", fontSize: 18,}}>{DataFeed.league}</Text>
         </View>
         
         <View style = {styles.teamsContainer}>
-            <Text style= {[styles.teams, {textAlign: "right"}]}>{tip.homeTeam}</Text> {/* Use tip.homeTeam */}
+            <Text style= {[styles.teams, {textAlign: "right"}]}>{DataFeed.homeTeam}</Text>
              <Text style= {{ }}>vs</Text>
-            <Text style= {[styles.teams, {textAlign:"left"}]}>{tip.awayTeam}</Text> {/* Use tip.awayTeam */}
+            <Text style= {[styles.teams, {textAlign:"left"}]}>{DataFeed.awayTeam}</Text>
         </View>
 
         <View style = {styles.tipsContainer}>
-            <Text style = {[styles.tips,{textAlign: "right",}]}>{tip.prediction}</Text> {/* Use tip.prediction */}
+            <Text style = {[styles.tips,{textAlign: "right",}]}>{DataFeed.tips}</Text>
             <Text style= {{}}> @ </Text>
-            <Text style= {[styles.tips,{textAlign: "left",}]}>{tip.odds}</Text> {/* Use tip.odds */}
+            <Text style= {[styles.tips,{textAlign: "left",}]}>{DataFeed.odds}</Text>        
         </View>
 
         <View style = {styles.dateContainer}>
-            <Text style= {styles.date}>{tip.date}</Text> {/* Use tip.date */}
+            <Text style= {styles.date}>{DataFeed.date}</Text>
         </View>
     </View>
   )
@@ -36,20 +32,20 @@ const TipsCard = ({ tip }) => { // <--- Accept 'tip' as a prop
 
 export default TipsCard
 
-// Your styles remain the same
-const baseContainer = {
-    backgroundColor: "white",
-    width: "90%",
-    height: "30",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 0.5,
-};
+ const baseContainer = {
+        backgroundColor: "white",
+        width: "90%",
+        height: "30",
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 0.5,
+    };
 
 const styles = StyleSheet.create({
     container:{
-        // You might want to adjust width/height to be more dynamic or use flex for better responsiveness
-        width: "90%", // Made it 90%
+        flex: 1,
+        flexDirection: "column",
+        width: "80%",
         height: 150,
         marginVertical: 10,
         backgroundColor: "lightgray",
@@ -67,24 +63,32 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
 
+    
+
     leagueContainer:{
         borderBottomWidth: 1,
         backgroundColor: "lightblue",
         width: "100%",
-        height: "30", // Consider using height: 30 or a percentage relative to container height
+        height: "30",
         justifyContent: "center",
         alignItems: "center",
         borderColor: "#ddd",
         borderBottomWidth: 1,
+        //borderStyle: "dashed",
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        
+    
     },
+    
     
     teamsContainer:{
         ...baseContainer,
+        //width: "100%",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        //gap: 10,
         alignSelf: "center",
     },
 
@@ -95,19 +99,19 @@ const styles = StyleSheet.create({
 
     tipsContainer:{
         ...baseContainer,
-        flexDirection: "row",
-    },
+    flexDirection: "row",},
 
     tips:{
         width: "45%",   
         marginHorizontal: 5,
     },
 
-    oddsContainer:baseContainer, // This one is not used in the JSX, might be a leftover.
+
+    oddsContainer:baseContainer,
 
     dateContainer:{
         ...baseContainer,
         marginBottom: 0,
-    },
+        },
         
 })
